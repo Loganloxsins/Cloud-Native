@@ -1,23 +1,95 @@
 # Cloud-Native
 
-## 1.功能要求
-### 1.1
-### 1.2 限流功能
+## 1. 项目说明
+
+TODO
+
+## 2. 部署过程
+
+### 2.1 实现一个简单REST接口
+
+```java
+@RestController
+public class DemoController {
+
+    private final RateLimiter rateLimiter = RateLimiter.create(100.0);
+
+    @GetMapping("/hello")
+    public ResponseEntity<String> hello(@RequestParam(value = "name", defaultValue = "World") String name) {
+        if (rateLimiter.tryAcquire()) {
+            return ResponseEntity.ok(String.format("Hello %s!", name));
+        } else {
+            return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS).body("Too many requests");
+        }
+    }
+}
+```
+
+例如，访问`http://localhost:8080/hello?name=NJU` ，将会返回：
+
+```
+Hello NJU!
+```
+
+### 2.2 限流功能
+
+（TODO: 感觉最好加一段文字说明限流功能是如何实现的qwq）
+
 ```
 参考：
 https://segmentfault.com/a/1190000040805974
 https://juejin.cn/post/6986574899338805261
 ```
-测试结果：
-![](./img/1.2/1.png)
-![](./img/1.2/2.png)
-![](./img/1.2/3.png)
-![](./img/1.2/4.png)
-![](./img/1.2/5.png)
-### 1.3
-### 1.4
 
+使用Jmeter测试结果如下：
+![](./img/2.2/1.png)
+![](./img/2.2/2.png)
+![](./img/2.2/3.png)
+![](./img/2.2/4.png)
+![](./img/2.2/5.png)
+
+## 2.3 编写Dokcerfile并制作镜像
+
+#### 编写Dockerfile
+
+```dockerfile
+# /demo/Dockerfile
+FROM openjdk
+ADD target/*.jar /application.jar
+ENTRYPOINT ["java", "-jar","/application.jar"]
 ```
+
+##### 解释
+
+以opendjk为基础镜像，将target文件夹中，demo项目构建好的jar包复制到镜像中根目录下，且重命名为application.jar，然后指定容器启动时要运行`java -jar /application.jar`命令，执行该jar文件
+
+#### 制作镜像
+
+在`/demo`目录下
+
+```shell
+docker build -t demo:v1  .
+```
+
+即可制作镜像，名称和tag分别为demo和v1
+
+#### 测试
+
+执行命令
+
+```shell
+docker run -p 8080:8080  -d demo:v1
+```
+
+然后访问`http://localhost:8080/hello?name=NJU`
+
+![](img/2.3/1.png)
+
+### 2.4 在 Kubernetes 集群上创建 Deployment 和 Service
+
+TODO
+
+```java
 2023 - 基于云原生技术的软件开发 - 大作业
 作业说明
 开发一个 Spring Boot 应用，并使用云原生功能
