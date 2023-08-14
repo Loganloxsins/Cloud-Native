@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="2.8" jmeter="2.13.20180731">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="测试计划" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="线程组" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="循环控制器" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">120</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">0.1</stringProp>
+        <longProp name="ThreadGroup.start_time">1691981329000</longProp>
+        <longProp name="ThreadGroup.end_time">1691981329000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP请求" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/hello</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.monitor">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResultCollector guiclass="TableVisualizer" testclass="ResultCollector" testname="用表格察看结果" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>false</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <threadCounts>true</threadCounts>
+              </value>
+            </objProp>
+            <stringProp name="filename">/home/mark5/IDEAProjects/hw03CloudNative/lzh/jmeter/线程组.jmx</stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>false</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <threadCounts>true</threadCounts>
+            </value>
+          </objProp>
+          <stringProp name="filename">/home/mark5/IDEAProjects/hw03CloudNative/lzh/jmeter/线程组.jmx</stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
+1691982346194,2,HTTP请求,200,,线程组 1-3,text,true,174,8,8,2
+1691982346194,2,HTTP请求,200,,线程组 1-2,text,true,174,8,8,2
+1691982346194,2,HTTP请求,200,,线程组 1-5,text,true,174,8,8,2
+1691982346194,4,HTTP请求,200,,线程组 1-1,text,true,174,9,9,4
+1691982346196,2,HTTP请求,200,,线程组 1-6,text,true,174,9,9,2
+1691982346194,4,HTTP请求,200,,线程组 1-4,text,true,174,9,9,4
+1691982346197,1,HTTP请求,200,,线程组 1-8,text,true,174,9,9,1
+1691982346197,2,HTTP请求,200,,线程组 1-7,text,true,174,10,10,2
+1691982346198,2,HTTP请求,200,,线程组 1-9,text,true,174,13,13,2
+1691982346198,2,HTTP请求,200,,线程组 1-10,text,true,174,13,13,2
+1691982346200,2,HTTP请求,200,,线程组 1-12,text,true,174,14,14,2
+1691982346200,2,HTTP请求,200,,线程组 1-11,text,true,174,14,14,2
+1691982346200,2,HTTP请求,200,,线程组 1-13,text,true,174,14,14,2
+1691982346201,2,HTTP请求,200,,线程组 1-14,text,true,174,16,16,2
+1691982346203,1,HTTP请求,200,,线程组 1-16,text,true,174,17,17,1
+1691982346203,1,HTTP请求,200,,线程组 1-15,text,true,174,17,17,1
+1691982346204,1,HTTP请求,200,,线程组 1-17,text,true,174,17,17,1
+1691982346210,1,HTTP请求,200,,线程组 1-19,text,true,174,19,19,1
+1691982346210,1,HTTP请求,200,,线程组 1-18,text,true,174,19,19,1
+1691982346215,2,HTTP请求,200,,线程组 1-21,text,true,174,22,22,2
+1691982346215,2,HTTP请求,200,,线程组 1-20,text,true,174,22,22,2
+1691982346215,4,HTTP请求,200,,线程组 1-22,text,true,174,22,22,4
+1691982346222,2,HTTP请求,200,,线程组 1-25,text,true,174,28,28,2
+1691982346222,2,HTTP请求,200,,线程组 1-24,text,true,174,28,28,2
+1691982346222,2,HTTP请求,200,,线程组 1-26,text,true,174,28,28,2
+1691982346222,2,HTTP请求,200,,线程组 1-23,text,true,174,28,28,2
+1691982346223,2,HTTP请求,200,,线程组 1-27,text,true,174,31,31,2
+1691982346223,2,HTTP请求,200,,线程组 1-28,text,true,174,31,31,2
+1691982346225,1,HTTP请求,200,,线程组 1-32,text,true,174,32,32,1
+1691982346225,2,HTTP请求,200,,线程组 1-29,text,true,174,32,32,2
+1691982346227,1,HTTP请求,200,,线程组 1-30,text,true,174,32,32,1
+1691982346226,9,HTTP请求,200,,线程组 1-31,text,true,174,32,32,9
+1691982346235,2,HTTP请求,200,,线程组 1-33,text,true,174,37,37,2
+1691982346236,2,HTTP请求,200,,线程组 1-35,text,true,174,37,37,1
+1691982346236,2,HTTP请求,200,,线程组 1-36,text,true,174,37,37,1
+1691982346236,2,HTTP请求,200,,线程组 1-37,text,true,174,37,37,2
+1691982346235,3,HTTP请求,200,,线程组 1-34,text,true,174,37,37,3
+1691982346239,2,HTTP请求,200,,线程组 1-38,text,true,174,41,41,2
+1691982346240,1,HTTP请求,200,,线程组 1-40,text,true,174,41,41,1
+1691982346240,1,HTTP请求,200,,线程组 1-41,text,true,174,41,41,1
+1691982346239,2,HTTP请求,200,,线程组 1-39,text,true,174,43,43,2
+1691982346242,2,HTTP请求,200,,线程组 1-45,text,true,174,48,48,2
+1691982346242,2,HTTP请求,200,,线程组 1-42,text,true,174,48,48,2
+1691982346242,2,HTTP请求,200,,线程组 1-47,text,true,174,50,50,2
+1691982346242,3,HTTP请求,200,,线程组 1-43,text,true,174,50,50,3
+1691982346242,3,HTTP请求,200,,线程组 1-44,text,true,174,50,50,3
+1691982346245,2,HTTP请求,200,,线程组 1-53,text,true,174,53,53,2
+1691982346245,2,HTTP请求,200,,线程组 1-52,text,true,174,53,53,2
+1691982346245,2,HTTP请求,200,,线程组 1-50,text,true,174,53,53,2
+1691982346245,2,HTTP请求,200,,线程组 1-51,text,true,174,53,53,2
+1691982346245,2,HTTP请求,200,,线程组 1-49,text,true,174,53,53,2
+1691982346244,7,HTTP请求,200,,线程组 1-48,text,true,174,53,53,7
+1691982346242,10,HTTP请求,200,,线程组 1-46,text,true,174,56,56,10
+1691982346252,2,HTTP请求,200,,线程组 1-56,text,true,174,58,58,2
+1691982346252,2,HTTP请求,200,,线程组 1-54,text,true,174,58,58,2
+1691982346252,2,HTTP请求,200,,线程组 1-55,text,true,174,58,58,2
+1691982346253,2,HTTP请求,200,,线程组 1-58,text,true,174,61,61,2
+1691982346253,2,HTTP请求,200,,线程组 1-57,text,true,174,61,61,2
+1691982346255,1,HTTP请求,200,,线程组 1-59,text,true,174,61,61,1
+1691982346255,1,HTTP请求,200,,线程组 1-61,text,true,174,61,61,1
+1691982346255,1,HTTP请求,200,,线程组 1-60,text,true,174,61,61,1
+1691982346257,2,HTTP请求,200,,线程组 1-63,text,true,174,65,65,1
+1691982346257,2,HTTP请求,200,,线程组 1-62,text,true,174,65,65,1
+1691982346257,3,HTTP请求,200,,线程组 1-64,text,true,174,68,68,3
+1691982346257,3,HTTP请求,200,,线程组 1-65,text,true,174,68,68,3
+1691982346260,1,HTTP请求,200,,线程组 1-66,text,true,174,68,68,1
+1691982346260,7,HTTP请求,200,,线程组 1-68,text,true,174,71,71,7
+1691982346264,3,HTTP请求,200,,线程组 1-71,text,true,174,71,71,3
+1691982346264,3,HTTP请求,200,,线程组 1-70,text,true,174,72,72,3
+1691982346263,4,HTTP请求,200,,线程组 1-69,text,true,174,72,72,4
+1691982346268,2,HTTP请求,200,,线程组 1-73,text,true,174,75,75,2
+1691982346268,2,HTTP请求,200,,线程组 1-72,text,true,174,75,75,2
+1691982346260,10,HTTP请求,200,,线程组 1-67,text,true,174,75,75,10
+1691982346270,1,HTTP请求,200,,线程组 1-74,text,true,174,77,77,1
+1691982346270,1,HTTP请求,200,,线程组 1-75,text,true,174,77,77,1
+1691982346271,1,HTTP请求,200,,线程组 1-77,text,true,174,80,80,1
+1691982346272,2,HTTP请求,200,,线程组 1-80,text,true,174,80,80,2
+1691982346272,2,HTTP请求,200,,线程组 1-78,text,true,174,80,80,2
+1691982346272,2,HTTP请求,200,,线程组 1-79,text,true,174,80,80,2
+1691982346271,3,HTTP请求,200,,线程组 1-76,text,true,174,80,80,3
+1691982346276,1,HTTP请求,200,,线程组 1-82,text,true,174,84,84,1
+1691982346276,1,HTTP请求,200,,线程组 1-83,text,true,174,84,84,1
+1691982346275,2,HTTP请求,200,,线程组 1-81,text,true,174,84,84,2
+1691982346276,3,HTTP请求,200,,线程组 1-84,text,true,174,87,87,3
+1691982346278,2,HTTP请求,200,,线程组 1-86,text,true,174,88,88,2
+1691982346278,2,HTTP请求,200,,线程组 1-87,text,true,174,88,88,2
+1691982346278,3,HTTP请求,200,,线程组 1-85,text,true,174,88,88,3
+1691982346280,2,HTTP请求,200,,线程组 1-88,text,true,174,88,88,2
+1691982346283,2,HTTP请求,200,,线程组 1-89,text,true,174,93,93,2
+1691982346284,2,HTTP请求,200,,线程组 1-92,text,true,174,93,93,2
+1691982346284,2,HTTP请求,200,,线程组 1-91,text,true,174,93,93,2
+1691982346284,3,HTTP请求,200,,线程组 1-90,text,true,174,94,94,3
+1691982346285,3,HTTP请求,200,,线程组 1-93,text,true,174,97,97,2
+1691982346287,2,HTTP请求,200,,线程组 1-96,text,true,174,98,98,2
+1691982346288,1,HTTP请求,200,,线程组 1-97,text,true,174,98,98,1
+1691982346288,1,HTTP请求,200,,线程组 1-98,text,true,174,98,98,1
+1691982346287,2,HTTP请求,200,,线程组 1-95,text,true,174,98,98,2
+1691982346287,2,HTTP请求,200,,线程组 1-94,text,true,174,98,98,2
+1691982346292,1,HTTP请求,200,,线程组 1-100,text,true,174,103,103,1
+1691982346292,1,HTTP请求,200,,线程组 1-101,text,true,174,103,103,1
+1691982346291,3,HTTP请求,200,,线程组 1-99,text,true,174,103,103,3
+1691982346292,2,HTTP请求,200,,线程组 1-103,text,true,174,103,103,2
+1691982346292,2,HTTP请求,200,,线程组 1-102,text,true,174,103,103,2
+1691982346296,1,HTTP请求,200,,线程组 1-104,text,true,174,107,107,1
+1691982346296,1,HTTP请求,200,,线程组 1-106,text,true,174,107,107,1
+1691982346296,2,HTTP请求,200,,线程组 1-105,text,true,174,107,107,2
+1691982346296,2,HTTP请求,200,,线程组 1-107,text,true,174,107,107,2
+1691982346301,1,HTTP请求,200,,线程组 1-109,text,true,174,111,111,1
+1691982346301,1,HTTP请求,200,,线程组 1-108,text,true,174,111,111,1
+1691982346301,1,HTTP请求,200,,线程组 1-110,text,true,174,111,111,1
+1691982346301,2,HTTP请求,200,,线程组 1-112,text,true,174,114,114,2
+1691982346303,2,HTTP请求,429,,线程组 1-111,text,false,179,114,114,2
+1691982346304,1,HTTP请求,429,,线程组 1-114,text,false,179,114,114,1
+1691982346303,2,HTTP请求,429,,线程组 1-113,text,false,179,114,114,2
+1691982346308,1,HTTP请求,200,,线程组 1-116,text,true,174,118,118,1
+1691982346307,3,HTTP请求,429,,线程组 1-115,text,false,179,118,118,3
+1691982346308,2,HTTP请求,429,,线程组 1-118,text,false,179,118,118,2
+1691982346308,2,HTTP请求,429,,线程组 1-117,text,false,179,118,118,2
+1691982346313,2,HTTP请求,429,,线程组 1-120,text,false,179,120,120,2
+1691982346314,2,HTTP请求,200,,线程组 1-119,text,true,174,120,120,2
+1691982408874,2,HTTP请求,200,,线程组 1-3,text,true,174,9,9,2
+1691982408874,3,HTTP请求,200,,线程组 1-5,text,true,174,9,9,3
+1691982408874,3,HTTP请求,200,,线程组 1-6,text,true,174,9,9,3
+1691982408874,3,HTTP请求,200,,线程组 1-1,text,true,174,9,9,3
+1691982408875,2,HTTP请求,200,,线程组 1-4,text,true,174,9,9,2
+1691982408876,2,HTTP请求,200,,线程组 1-8,text,true,174,10,10,2
+1691982408876,2,HTTP请求,200,,线程组 1-9,text,true,174,10,10,2
+1691982408876,2,HTTP请求,200,,线程组 1-7,text,true,174,10,10,2
+1691982408878,3,HTTP请求,200,,线程组 1-10,text,true,174,11,11,3
+1691982408874,8,HTTP请求,200,,线程组 1-2,text,true,174,13,13,8
+1691982408881,2,HTTP请求,200,,线程组 1-11,text,true,174,14,14,1
+1691982408882,1,HTTP请求,200,,线程组 1-14,text,true,174,14,14,1
+1691982408882,2,HTTP请求,200,,线程组 1-13,text,true,174,15,15,2
+1691982408881,3,HTTP请求,200,,线程组 1-12,text,true,174,16,16,3
+1691982408884,1,HTTP请求,200,,线程组 1-15,text,true,174,19,19,1
+1691982408884,1,HTTP请求,200,,线程组 1-16,text,true,174,19,19,1
+1691982408885,2,HTTP请求,200,,线程组 1-17,text,true,174,22,22,2
+1691982408886,1,HTTP请求,200,,线程组 1-19,text,true,174,22,22,1
+1691982408885,3,HTTP请求,200,,线程组 1-18,text,true,174,22,22,3
+1691982408887,1,HTTP请求,200,,线程组 1-21,text,true,174,22,22,1
+1691982408887,1,HTTP请求,200,,线程组 1-20,text,true,174,22,22,1
+1691982408887,1,HTTP请求,200,,线程组 1-22,text,true,174,22,22,1
+1691982408889,1,HTTP请求,200,,线程组 1-25,text,true,174,27,27,1
+1691982408889,1,HTTP请求,200,,线程组 1-23,text,true,174,27,27,1
+1691982408889,1,HTTP请求,200,,线程组 1-24,text,true,174,27,27,1
+1691982408889,1,HTTP请求,200,,线程组 1-26,text,true,174,27,27,1
+1691982408889,2,HTTP请求,200,,线程组 1-27,text,true,174,27,27,2
+1691982408892,1,HTTP请求,200,,线程组 1-30,text,true,174,31,31,1
+1691982408892,1,HTTP请求,200,,线程组 1-31,text,true,174,31,31,1
+1691982408891,2,HTTP请求,200,,线程组 1-29,text,true,174,31,31,2
+1691982408891,2,HTTP请求,200,,线程组 1-28,text,true,174,31,31,2
+1691982408896,1,HTTP请求,200,,线程组 1-32,text,true,174,36,36,1
+1691982408896,1,HTTP请求,200,,线程组 1-33,text,true,174,36,36,1
+1691982408896,1,HTTP请求,200,,线程组 1-35,text,true,174,36,36,1
+1691982408896,2,HTTP请求,200,,线程组 1-34,text,true,174,36,36,2
+1691982408897,1,HTTP请求,200,,线程组 1-36,text,true,174,36,36,1
+1691982408900,1,HTTP请求,200,,线程组 1-41,text,true,174,41,41,1
+1691982408900,1,HTTP请求,200,,线程组 1-37,text,true,174,41,41,1
+1691982408900,1,HTTP请求,200,,线程组 1-38,text,true,174,41,41,1
+1691982408900,1,HTTP请求,200,,线程组 1-39,text,true,174,41,41,1
+1691982408900,1,HTTP请求,200,,线程组 1-40,text,true,174,41,41,1
+1691982408904,1,HTTP请求,200,,线程组 1-42,text,true,174,46,46,1
+1691982408904,2,HTTP请求,200,,线程组 1-44,text,true,174,46,46,2
+1691982408904,2,HTTP请求,200,,线程组 1-46,text,true,174,46,46,2
+1691982408904,2,HTTP请求,200,,线程组 1-43,text,true,174,46,46,2
+1691982408904,2,HTTP请求,200,,线程组 1-45,text,true,174,46,46,2
+1691982408909,2,HTTP请求,200,,线程组 1-48,text,true,174,50,50,2
+1691982408909,2,HTTP请求,200,,线程组 1-49,text,true,174,50,50,2
+1691982408909,2,HTTP请求,200,,线程组 1-47,text,true,174,50,50,2
+1691982408910,1,HTTP请求,200,,线程组 1-50,text,true,174,50,50,1
+1691982408914,2,HTTP请求,200,,线程组 1-52,text,true,174,55,55,2
+1691982408914,2,HTTP请求,200,,线程组 1-53,text,true,174,55,55,2
+1691982408914,2,HTTP请求,200,,线程组 1-51,text,true,174,55,55,2
+1691982408914,2,HTTP请求,200,,线程组 1-54,text,true,174,55,55,2
+1691982408915,2,HTTP请求,200,,线程组 1-55,text,true,174,55,55,2
+1691982408919,2,HTTP请求,200,,线程组 1-56,text,true,174,61,61,2
+1691982408919,2,HTTP请求,200,,线程组 1-57,text,true,174,61,61,2
+1691982408919,3,HTTP请求,200,,线程组 1-58,text,true,174,61,61,3
+1691982408920,2,HTTP请求,200,,线程组 1-59,text,true,174,61,61,2
+1691982408920,2,HTTP请求,200,,线程组 1-61,text,true,174,61,61,2
+1691982408920,2,HTTP请求,200,,线程组 1-60,text,true,174,61,61,2
+1691982408924,1,HTTP请求,200,,线程组 1-62,text,true,174,67,67,1
+1691982408924,2,HTTP请求,200,,线程组 1-64,text,true,174,67,67,2
+1691982408924,3,HTTP请求,200,,线程组 1-63,text,true,174,67,67,3
+1691982408925,2,HTTP请求,200,,线程组 1-67,text,true,174,67,67,2
+1691982408927,6,HTTP请求,200,,线程组 1-66,text,true,174,67,67,6
+1691982408927,6,HTTP请求,200,,线程组 1-65,text,true,174,67,67,6
+1691982408934,2,HTTP请求,200,,线程组 1-70,text,true,174,70,70,2
+1691982408934,2,HTTP请求,200,,线程组 1-69,text,true,174,70,70,2
+1691982408934,2,HTTP请求,200,,线程组 1-68,text,true,174,70,70,2
+1691982408937,1,HTTP请求,200,,线程组 1-72,text,true,174,73,73,1
+1691982408937,1,HTTP请求,200,,线程组 1-73,text,true,174,73,73,1
+1691982408937,3,HTTP请求,200,,线程组 1-71,text,true,174,76,76,3
+1691982408939,3,HTTP请求,200,,线程组 1-74,text,true,174,76,76,3
+1691982408940,2,HTTP请求,200,,线程组 1-76,text,true,174,76,76,2
+1691982408940,3,HTTP请求,200,,线程组 1-75,text,true,174,76,76,3
+1691982408946,1,HTTP请求,200,,线程组 1-79,text,true,174,79,79,1
+1691982408945,2,HTTP请求,200,,线程组 1-77,text,true,174,79,79,2
+1691982408945,3,HTTP请求,200,,线程组 1-78,text,true,174,79,79,3
+1691982408949,2,HTTP请求,200,,线程组 1-81,text,true,174,83,83,2
+1691982408949,2,HTTP请求,200,,线程组 1-83,text,true,174,83,83,2
+1691982408949,2,HTTP请求,200,,线程组 1-82,text,true,174,83,83,2
+1691982408952,2,HTTP请求,200,,线程组 1-80,text,true,174,83,83,2
+1691982408955,2,HTTP请求,200,,线程组 1-84,text,true,174,87,87,2
+1691982408956,1,HTTP请求,200,,线程组 1-86,text,true,174,87,87,1
+1691982408956,2,HTTP请求,200,,线程组 1-87,text,true,174,87,87,2
+1691982408956,2,HTTP请求,200,,线程组 1-85,text,true,174,87,87,2
+1691982408960,1,HTTP请求,200,,线程组 1-91,text,true,174,91,91,1
+1691982408959,2,HTTP请求,200,,线程组 1-89,text,true,174,91,91,2
+1691982408959,3,HTTP请求,200,,线程组 1-88,text,true,174,91,91,3
+1691982408960,2,HTTP请求,200,,线程组 1-90,text,true,174,91,91,2
+1691982408964,3,HTTP请求,200,,线程组 1-95,text,true,174,104,104,3
+1691982408964,3,HTTP请求,200,,线程组 1-92,text,true,174,104,104,3
+1691982408964,3,HTTP请求,200,,线程组 1-93,text,true,174,104,104,3
+1691982408966,2,HTTP请求,200,,线程组 1-97,text,true,174,104,104,2
+1691982408967,2,HTTP请求,200,,线程组 1-102,text,true,174,104,104,2
+1691982408967,2,HTTP请求,200,,线程组 1-96,text,true,174,104,104,2
+1691982408966,3,HTTP请求,200,,线程组 1-94,text,true,174,104,104,3
+1691982408966,3,HTTP请求,200,,线程组 1-99,text,true,174,104,104,3
+1691982408968,2,HTTP请求,200,,线程组 1-104,text,true,174,104,104,2
+1691982408966,4,HTTP请求,200,,线程组 1-98,text,true,174,104,104,4
+1691982408967,4,HTTP请求,200,,线程组 1-100,text,true,174,104,104,4
+1691982408970,1,HTTP请求,200,,线程组 1-103,text,true,174,104,104,1
+1691982408966,5,HTTP请求,200,,线程组 1-101,text,true,174,104,104,5
+1691982408972,2,HTTP请求,200,,线程组 1-106,text,true,174,106,106,2
+1691982408973,2,HTTP请求,200,,线程组 1-107,text,true,174,107,107,2
+1691982408975,1,HTTP请求,200,,线程组 1-105,text,true,174,112,112,1
+1691982408976,1,HTTP请求,200,,线程组 1-110,text,true,174,112,112,1
+1691982408977,1,HTTP请求,200,,线程组 1-114,text,true,174,113,113,1
+1691982408976,2,HTTP请求,200,,线程组 1-113,text,true,174,113,113,2
+1691982408978,1,HTTP请求,429,,线程组 1-111,text,false,179,114,114,1
+1691982408976,3,HTTP请求,200,,线程组 1-108,text,true,174,114,114,3
+1691982408978,2,HTTP请求,429,,线程组 1-109,text,false,179,116,116,2
+1691982408979,2,HTTP请求,429,,线程组 1-112,text,false,179,117,117,2
+1691982408980,1,HTTP请求,429,,线程组 1-116,text,false,179,117,117,1
+1691982408980,2,HTTP请求,429,,线程组 1-115,text,false,179,117,117,2
+1691982408981,2,HTTP请求,429,,线程组 1-117,text,false,179,119,119,2
+1691982408983,1,HTTP请求,429,,线程组 1-118,text,false,179,120,120,1
+1691982408983,2,HTTP请求,429,,线程组 1-119,text,false,179,120,120,2
+1691982408984,1,HTTP请求,429,,线程组 1-120,text,false,179,120,120,1
+1691982714788,2,HTTP请求,200,,线程组 1-6,text,true,174,9,9,2
+1691982714788,2,HTTP请求,200,,线程组 1-9,text,true,174,9,9,2
+1691982714788,3,HTTP请求,200,,线程组 1-4,text,true,174,12,12,3
+1691982714789,2,HTTP请求,200,,线程组 1-11,text,true,174,12,12,2
+1691982714789,2,HTTP请求,200,,线程组 1-7,text,true,174,12,12,2
+1691982714789,2,HTTP请求,200,,线程组 1-10,text,true,174,12,12,2
+1691982714791,2,HTTP请求,200,,线程组 1-14,text,true,174,14,14,2
+1691982714793,1,HTTP请求,200,,线程组 1-16,text,true,174,16,16,1
+1691982714794,1,HTTP请求,200,,线程组 1-5,text,true,174,17,17,1
+1691982714788,8,HTTP请求,200,,线程组 1-8,text,true,174,17,17,8
+1691982714792,4,HTTP请求,200,,线程组 1-3,text,true,174,17,17,4
+1691982714794,2,HTTP请求,200,,线程组 1-18,text,true,174,18,18,2
+1691982714798,1,HTTP请求,200,,线程组 1-12,text,true,174,20,20,1
+1691982714787,4,HTTP请求,200,,线程组 1-1,text,true,174,12,12,4
+1691982714791,2,HTTP请求,200,,线程组 1-13,text,true,174,14,14,2
+1691982714799,1,HTTP请求,200,,线程组 1-19,text,true,174,23,23,1
+1691982714800,1,HTTP请求,200,,线程组 1-26,text,true,174,23,23,1
+1691982714800,1,HTTP请求,200,,线程组 1-25,text,true,174,23,23,1
+1691982714801,1,HTTP请求,200,,线程组 1-27,text,true,174,23,23,1
+1691982714795,1,HTTP请求,200,,线程组 1-17,text,true,174,17,17,1
+1691982714797,1,HTTP请求,200,,线程组 1-15,text,true,174,18,18,1
+1691982714804,1,HTTP请求,200,,线程组 1-30,text,true,174,28,28,1
+1691982714804,1,HTTP请求,200,,线程组 1-23,text,true,174,28,28,1
+1691982714799,1,HTTP请求,200,,线程组 1-20,text,true,174,23,23,1
+1691982714787,7,HTTP请求,200,,线程组 1-2,text,true,174,15,15,7
+1691982714818,1,HTTP请求,200,,线程组 1-29,text,true,174,42,42,1
+1691982714820,1,HTTP请求,200,,线程组 1-57,text,true,174,46,46,1
+1691982714820,1,HTTP请求,200,,线程组 1-37,text,true,174,46,46,1
+1691982714820,1,HTTP请求,200,,线程组 1-58,text,true,174,46,46,1
+1691982714820,1,HTTP请求,200,,线程组 1-59,text,true,174,46,46,1
+1691982714822,1,HTTP请求,200,,线程组 1-63,text,true,174,50,50,1
+1691982714822,2,HTTP请求,200,,线程组 1-61,text,true,174,50,50,2
+1691982714822,2,HTTP请求,200,,线程组 1-62,text,true,174,50,50,2
+1691982714822,2,HTTP请求,200,,线程组 1-60,text,true,174,50,50,2
+1691982714825,1,HTTP请求,200,,线程组 1-66,text,true,174,53,53,1
+1691982714824,2,HTTP请求,200,,线程组 1-64,text,true,174,53,53,2
+1691982714810,5,HTTP请求,200,,线程组 1-34,text,true,174,40,40,5
+1691982714811,5,HTTP请求,200,,线程组 1-35,text,true,174,40,40,5
+1691982714814,2,HTTP请求,200,,线程组 1-32,text,true,174,40,40,2
+1691982714827,1,HTTP请求,200,,线程组 1-69,text,true,174,57,57,1
+1691982714808,8,HTTP请求,200,,线程组 1-28,text,true,174,40,40,8
+1691982714826,2,HTTP请求,200,,线程组 1-68,text,true,174,57,57,2
+1691982714812,5,HTTP请求,200,,线程组 1-41,text,true,174,40,40,5
+1691982714814,3,HTTP请求,200,,线程组 1-24,text,true,174,40,40,3
+1691982714826,3,HTTP请求,200,,线程组 1-44,text,true,174,57,57,3
+1691982714811,6,HTTP请求,200,,线程组 1-36,text,true,174,40,40,6
+1691982714826,3,HTTP请求,200,,线程组 1-40,text,true,174,57,57,3
+1691982714812,5,HTTP请求,200,,线程组 1-39,text,true,174,40,40,5
+1691982714812,5,HTTP请求,200,,线程组 1-38,text,true,174,40,40,5
+1691982714814,3,HTTP请求,200,,线程组 1-22,text,true,174,40,40,3
+1691982714808,9,HTTP请求,200,,线程组 1-33,text,true,174,40,40,9
+1691982714808,9,HTTP请求,200,,线程组 1-21,text,true,174,40,40,9
+1691982714830,1,HTTP请求,200,,线程组 1-45,text,true,174,64,64,1
+1691982714830,1,HTTP请求,200,,线程组 1-72,text,true,174,64,64,1
+1691982714830,2,HTTP请求,200,,线程组 1-73,text,true,174,64,64,2
+1691982714815,2,HTTP请求,200,,线程组 1-43,text,true,174,40,40,2
+1691982714831,2,HTTP请求,200,,线程组 1-74,text,true,174,65,65,2
+1691982714831,2,HTTP请求,200,,线程组 1-46,text,true,174,66,66,2
+1691982714832,1,HTTP请求,200,,线程组 1-67,text,true,174,66,66,1
+1691982714830,3,HTTP请求,200,,线程组 1-71,text,true,174,66,66,3
+1691982714832,2,HTTP请求,200,,线程组 1-76,text,true,174,69,69,2
+1691982714833,2,HTTP请求,200,,线程组 1-77,text,true,174,69,69,2
+1691982714834,1,HTTP请求,200,,线程组 1-78,text,true,174,70,70,1
+1691982714834,2,HTTP请求,200,,线程组 1-80,text,true,174,75,75,2
+1691982714835,2,HTTP请求,200,,线程组 1-47,text,true,174,76,76,2
+1691982714836,2,HTTP请求,200,,线程组 1-81,text,true,174,78,78,2
+1691982714836,2,HTTP请求,200,,线程组 1-83,text,true,174,78,78,2
+1691982714835,3,HTTP请求,200,,线程组 1-48,text,true,174,78,78,3
+1691982714836,2,HTTP请求,200,,线程组 1-82,text,true,174,78,78,2
+1691982714837,2,HTTP请求,200,,线程组 1-84,text,true,174,80,80,2
+1691982714834,5,HTTP请求,200,,线程组 1-79,text,true,174,81,81,5
+1691982714838,1,HTTP请求,200,,线程组 1-85,text,true,174,81,81,1
+1691982714836,3,HTTP请求,200,,线程组 1-75,text,true,174,81,81,3
+1691982714835,4,HTTP请求,200,,线程组 1-70,text,true,174,81,81,4
+1691982714839,2,HTTP请求,200,,线程组 1-86,text,true,174,83,83,2
+1691982714839,2,HTTP请求,200,,线程组 1-87,text,true,174,83,83,2
+1691982714839,2,HTTP请求,200,,线程组 1-88,text,true,174,83,83,2
+1691982714841,1,HTTP请求,200,,线程组 1-90,text,true,174,87,87,1
+1691982714841,1,HTTP请求,200,,线程组 1-89,text,true,174,87,87,1
+1691982714842,1,HTTP请求,200,,线程组 1-50,text,true,174,90,90,1
+1691982714842,1,HTTP请求,200,,线程组 1-51,text,true,174,90,90,1
+1691982714843,1,HTTP请求,200,,线程组 1-53,text,true,174,90,90,1
+1691982714843,1,HTTP请求,200,,线程组 1-52,text,true,174,90,90,1
+1691982714843,1,HTTP请求,200,,线程组 1-93,text,true,174,90,90,1
+1691982714843,1,HTTP请求,200,,线程组 1-49,text,true,174,90,90,1
+1691982714845,1,HTTP请求,200,,线程组 1-91,text,true,174,91,91,1
+1691982714845,4,HTTP请求,200,,线程组 1-92,text,true,174,93,93,4
+1691982714848,2,HTTP请求,200,,线程组 1-42,text,true,174,93,93,2
+1691982714848,2,HTTP请求,200,,线程组 1-55,text,true,174,93,93,2
+1691982714848,2,HTTP请求,200,,线程组 1-94,text,true,174,93,93,2
+1691982714824,2,HTTP请求,200,,线程组 1-65,text,true,174,53,53,2
+1691982714808,9,HTTP请求,200,,线程组 1-31,text,true,174,40,40,9
+1691982714848,2,HTTP请求,200,,线程组 1-54,text,true,174,93,93,2
+1691982714851,1,HTTP请求,200,,线程组 1-95,text,true,174,99,99,1
+1691982714851,2,HTTP请求,200,,线程组 1-96,text,true,174,102,102,2
+1691982714851,3,HTTP请求,200,,线程组 1-97,text,true,174,102,102,3
+1691982714852,2,HTTP请求,200,,线程组 1-100,text,true,174,102,102,2
+1691982714852,3,HTTP请求,200,,线程组 1-101,text,true,174,102,102,3
+1691982714850,5,HTTP请求,200,,线程组 1-56,text,true,174,102,102,5
+1691982714853,3,HTTP请求,200,,线程组 1-102,text,true,174,102,102,3
+1691982714852,4,HTTP请求,200,,线程组 1-99,text,true,174,102,102,4
+1691982714853,3,HTTP请求,200,,线程组 1-98,text,true,174,106,106,3
+1691982714857,2,HTTP请求,200,,线程组 1-105,text,true,174,109,109,2
+1691982714856,3,HTTP请求,200,,线程组 1-104,text,true,174,109,109,3
+1691982714858,1,HTTP请求,200,,线程组 1-107,text,true,174,110,110,1
+1691982714856,3,HTTP请求,200,,线程组 1-103,text,true,174,110,110,3
+1691982714857,3,HTTP请求,200,,线程组 1-106,text,true,174,110,110,3
+1691982714858,2,HTTP请求,200,,线程组 1-110,text,true,174,110,110,2
+1691982714858,3,HTTP请求,429,,线程组 1-109,text,false,179,110,110,3
+1691982714859,2,HTTP请求,429,,线程组 1-108,text,false,179,110,110,2
+1691982714863,2,HTTP请求,429,,线程组 1-111,text,false,179,115,115,2
+1691982714864,1,HTTP请求,429,,线程组 1-112,text,false,179,115,115,1
+1691982714864,2,HTTP请求,429,,线程组 1-114,text,false,179,115,115,2
+1691982714864,3,HTTP请求,429,,线程组 1-115,text,false,179,117,117,3
+1691982714864,4,HTTP请求,429,,线程组 1-113,text,false,179,118,118,4
+1691982714867,1,HTTP请求,429,,线程组 1-117,text,false,179,119,119,1
+1691982714867,1,HTTP请求,429,,线程组 1-116,text,false,179,119,119,1
+1691982714867,2,HTTP请求,429,,线程组 1-118,text,false,179,120,120,2
+1691982714869,1,HTTP请求,429,,线程组 1-120,text,false,179,120,120,1
+1691982714869,1,HTTP请求,200,,线程组 1-119,text,true,174,120,120,1
