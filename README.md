@@ -1,4 +1,4 @@
-# Cloud-Native
+# FAKE NAME
 
 ## 1. 项目说明
 
@@ -33,13 +33,17 @@ Hello NJU!
 
 ### 2.2 限流功能
 
-（TODO: 感觉最好加一段文字说明限流功能是如何实现的qwq）
-
 ```
 参考：
 https://segmentfault.com/a/1190000040805974
 https://juejin.cn/post/6986574899338805261
 ```
+实现途径：
+```java
+private final RateLimiter rateLimiter = RateLimiter.create(100.0);
+```
+RateLimiter的原理类似于令牌桶，它主要由许可发出的速率来定义，如果没有额外的配置，许可证将按每秒许可证规定的固定速度分配，许可将被平滑地分发，若请求超过permitsPerSecond则RateLimiter按照每秒 1/permitsPerSecond 的速率释放许可。
+RateLimiter.create(100.0) 创建了一个限流器对象，它的参数表示每秒允许通过的请求数。在这里设置为每秒最多允许 100 次请求通过。
 
 使用Jmeter测试结果如下：
 ![](./img/2.2/1.png)
