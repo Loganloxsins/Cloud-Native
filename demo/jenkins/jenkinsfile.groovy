@@ -19,7 +19,7 @@ pipeline {
             }
             steps {
                 echo "2.Maven Build Stage"
-                dir('/var/jenkins_home/workspace/030demo/demo'){
+                dir('/var/jenkins_home/workspace/030demo/demo') {
                     sh 'mvn -B clean package -Dmaven.test.skip=true'
                 }
             }
@@ -30,8 +30,8 @@ pipeline {
             }
             steps {
                 echo "3.Image Build Stage"
-                dir('/var/jenkins_home/workspace/030demo/demo'){
-                    sh 'docker build -f Dockerfile --build-arg jar_name=target/demo-0.0.1-SNAPSHOT.jar -t demo:${BUILD_ID} . '
+                dir('/var/jenkins_home/workspace/030demo/demo') {
+                    sh 'docker build -f Dockerfile --build-arg jar_name=target/cloud-native-0.0.1-SNAPSHOT.jar -t demo:${BUILD_ID} . '
                     sh 'docker tag  demo:${BUILD_ID}  harbor.edu.cn/nju30/demo:${BUILD_ID}'
                 }
             }
@@ -42,7 +42,7 @@ pipeline {
             }
             steps {
                 echo "4.Push Docker Image Stage"
-                dir('/var/jenkins_home/workspace/030demo/demo'){
+                dir('/var/jenkins_home/workspace/030demo/demo') {
                     sh "docker login --username=nju30 harbor.edu.cn -p nju302023"
                     sh "docker push harbor.edu.cn/nju30/demo:${BUILD_ID}"
                 }
@@ -63,16 +63,12 @@ node('slave') {
 
         stage('YAML') {
             echo "6. Change YAML File Stage"
-            dir('/var/jenkins_home/workspace/030demo/demo'){
-                sh 'sed -i "s#{VERSION}#${BUILD_ID}#g" ./jenkins/scripts/demo.yaml'
-            }
+            sh 'sed -i "s#{VERSION}#${BUILD_ID}#g" ./demo/jenkins/scripts/demo.yaml'
         }
 
         stage('Deploy') {
             echo "7. Deploy To K8s Stage"
-            dir('/var/jenkins_home/workspace/030demo/demo'){
-                sh 'kubectl apply -f ./jenkins/scripts/demo.yaml -n nju30'
-            }
+            sh 'kubectl apply -f ./demo/jenkins/scripts/demo.yaml -n nju30'
         }
     }
 }
