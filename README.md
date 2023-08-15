@@ -337,9 +337,10 @@ spec:
 
 > http://172.29.4.18:31237/d/vgo81664k/monitor?orgId=1
 
-![](img/3.2/monitor.jpg)
+![monitor](img/3.2/monitor.png)
+
 1. JVM usage 容器jvm使用情况
-![](img/3.2/jvm.png)
+    ![](img/3.2/jvm.png)
 
 2. container cpu usage 容器CPU使用情况
 
@@ -352,7 +353,13 @@ spec:
 ### 2.8 压测并观察监控数据
 ![](img/3.3/1.jpg)
 ![](img/3.3/2.jpg)
+
+![](img/3.3/granafa.png)
+
+观察到，在压测后，各项资源占用率都明显上升
+
 ### 2.9 手动扩容并观察监控数据
+
 扩容前pod数为1:
 
 ![](img/3.1/2.png)
@@ -383,3 +390,4 @@ spec:
 
 扩容过后的监控数据：
 ![](img/3.3/change_monitor.png)
+
