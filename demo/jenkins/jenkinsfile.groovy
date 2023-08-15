@@ -19,7 +19,9 @@ pipeline {
             }
             steps {
                 echo "2.Maven Build Stage"
-                sh 'mvn -B clean package -Dmaven.test.skip=true'
+                dir('/var/jenkins_home/workspace/030demo/demo'){
+                    sh 'mvn -B clean package -Dmaven.test.skip=true'
+                }
             }
         }
         stage('Image Build') {
@@ -28,8 +30,10 @@ pipeline {
             }
             steps {
                 echo "3.Image Build Stage"
-                sh 'docker build -f Dockerfile --build-arg jar_name=target/cloud-native-0.0.1-SNAPSHOT.jar -t cloud-native:${BUILD_ID} . '
-                sh 'docker tag  cloud-native:${BUILD_ID}  harbor.edu.cn/nju30/cloud-native:${BUILD_ID}'
+                dir('/var/jenkins_home/workspace/030demo/demo'){
+                    sh 'docker build -f Dockerfile --build-arg jar_name=target/demo-0.0.1-SNAPSHOT.jar -t demo:${BUILD_ID} . '
+                    sh 'docker tag  demo:${BUILD_ID}  harbor.edu.cn/nju30/demo:${BUILD_ID}'
+                }
             }
         }
         stage('Push') {
@@ -38,8 +42,11 @@ pipeline {
             }
             steps {
                 echo "4.Push Docker Image Stage"
-                sh "docker login --username=nju30 harbor.edu.cn -p nju302023"
-                sh "docker push harbor.edu.cn/nju30/cloud-native:${BUILD_ID}"
+                dir('/var/jenkins_home/workspace/030demo/demo'){
+                    sh "docker login --username=nju30 harbor.edu.cn -p nju302023"
+                    sh "docker push harbor.edu.cn/nju30/demo:${BUILD_ID}"
+                }
+
             }
         }
     }
@@ -56,12 +63,16 @@ node('slave') {
 
         stage('YAML') {
             echo "6. Change YAML File Stage"
-            sh 'sed -i "s#{VERSION}#${BUILD_ID}#g" ./jenkins/scripts/cloud-native.yaml'
+            dir('/var/jenkins_home/workspace/030demo/demo'){
+                sh 'sed -i "s#{VERSION}#${BUILD_ID}#g" ./jenkins/scripts/demo.yaml'
+            }
         }
 
         stage('Deploy') {
             echo "7. Deploy To K8s Stage"
-            sh 'kubectl apply -f ./jenkins/scripts/cloud-native.yaml -n nju30'
+            dir('/var/jenkins_home/workspace/030demo/demo'){
+                sh 'kubectl apply -f ./jenkins/scripts/demo.yaml -n nju30'
+            }
         }
     }
 }
