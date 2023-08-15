@@ -276,13 +276,16 @@ spec:
     - nju30
 ```
 
-验证Prometheus
+验证Prometheus接口：
+> http://172.29.4.18:30083/targets
+
 ![](img/3.1/1.jpg)
 ![](img/3.1/3.jpg)
 ![](img/3.1/2.png)
-Prometheus
 
 ### 3.2 Grafana
+
+> http://172.29.4.18:31237/d/vgo81664k/monitor?orgId=1
 
 ![](img/3.2/monitor.jpg)
 1. JVM usage 容器jvm使用情况
@@ -306,8 +309,24 @@ Prometheus
 
 更改yaml文件重新构建流水线：
 
-![](img/3.3/change.png)
+```
+#demo.yaml
 
+apiVersion: apps/v1
+kind: Deployment #对象类型
+metadata:
+  labels:
+    app: demo
+  name: demo
+  namespace: nju30
+spec:
+  replicas: 3  #运行容器的副本数
+  selector:
+    matchLabels:
+      app: demo
+      
+      ...
+```
 扩容成功：
 
 ![](img/3.3/after.png)
