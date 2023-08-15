@@ -23,7 +23,7 @@ spec:
         app: demo
     spec:
       containers: #docker容器的配置
-        - image: harbor.edu.cn/nju30/demo:{VERSION} #pull镜像的地址
+        - image: harbor.edu.cn/nju30/demo:18 #pull镜像的地址
           name: demo
       imagePullSecrets:
         - name: nju30-secret
