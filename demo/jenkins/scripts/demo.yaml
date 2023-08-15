@@ -41,7 +41,7 @@ spec:
     app: demo
   ports:
     - name: tcp
-      nodePort: 31105  #host's port
+      nodePort: 31109  #host's port
       protocol: TCP
       port: 8080  #service's port
       targetPort: 8080  #target pod's port
