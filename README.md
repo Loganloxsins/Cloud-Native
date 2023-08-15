@@ -1,15 +1,13 @@
-# FAKE NAME
-
+# NJU30-云原生大作业说明文档
 ## 1. 项目说明
 
 | 姓名           | 学号      |
 | -------------- | --------- |
-| 刘子恒 |     |
-| 陈宇航         |  |
-| 王柏霏         |  |
+| 刘子恒 |  211870018   |
+| 陈宇航         | 211850104 |
+| 王柏霏         | 211870213 |
 
 项目地址：https://gitee.com/duasoihvod/Cloud-Native.git
-统一限流地址：
 
 ## 2. 部署过程
 
@@ -280,8 +278,40 @@ spec:
 
 在Prometheus的UI界面验证
 ![](img/3.1/1.jpg)
+![](img/3.1/2.png)
 
+### 3.2 Grafana
 
+![](img/3.2/monitor.jpg)
+1. JVM usage 容器jvm使用情况
+![](img/3.2/jvm.png)
+
+2. container cpu usage 容器CPU使用情况
+
+![](img/3.2/cpu.png)
+
+3. container memory usage 容器内存使用情况
+
+![](img/3.2/CMU.png)
+
+### 3.3 压测并观察监控数据
+![](img/3.3/1.jpg)
+![](img/3.3/2.jpg)
+### 3.4 手动扩容并观察监控数据
+扩容前pod数为1:
+
+![](img/3.1/2.png)
+
+更改yaml文件重新构建流水线：
+
+![](img/3.3/change.png)
+
+扩容成功：
+
+![](img/3.3/after.png)
+
+扩容过后的监控数据：
+![](img/3.3/change_monitor.png)
 
 ```java
 2023 - 基于云原生技术的软件开发 - 大作业
