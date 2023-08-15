@@ -14,11 +14,11 @@ spec:
       app: demo
   template:
     metadata:
-      annotations:
-        prometheus.io/path: /actuator/prometheus
-        prometheus.io/port: "8080"
-        prometheus.io/scheme: http
-        prometheus.io/scrape: "true"
+#       annotations:
+#         prometheus.io/path: /actuator/prometheus
+#         prometheus.io/port: "8080"
+#         prometheus.io/scheme: http
+#         prometheus.io/scrape: "true"
       labels:
         app: demo
     spec:
@@ -45,23 +45,3 @@ spec:
       protocol: TCP
       port: 8080  #service's port
       targetPort: 8080  #target pod's port
----
-apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
-metadata:
-  labels:
-    k8s-app: demo
-  name: demo
-  namespace: nju30
-spec:
-  endpoints:
-    - interval: 30s
-      port: tcp
-      path: /actuator/prometheus
-      scheme: 'http'
-  selector:
-    matchLabels:
-      app: demo
-  namespaceSelector:
-    matchNames:
-      - nju30
