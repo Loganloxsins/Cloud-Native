@@ -57,7 +57,7 @@ RateLimiter.create(100.0) 创建了一个限流器对象，它的参数表示每
 ![](./img/2.2/4.png)
 ![](./img/2.2/5.png)
 
-## 2.3 编写Dokcerfile并制作镜像
+### 2.3 编写Dokcerfile并制作镜像
 
 #### 编写Dockerfile
 
@@ -224,18 +224,68 @@ node('slave') {
     }
 }
 ```
-#### 流水线部署成功：
+#### 单元测试
+
+使用如下测试代码：
+
+```java
+import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+import com.google.common.util.concurrent.RateLimiter;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.web.servlet.MockMvc;
+
+@WebMvcTest(DemoController.class)
+public class DemoControllerTest {
+
+    @Autowired
+    private MockMvc mockMvc;
+
+    @MockBean
+    private RateLimiter rateLimiter;
+
+    @BeforeEach
+    public void setUp() {
+        when(rateLimiter.tryAcquire()).thenReturn(true);
+    }
+
+    @Test
+    public void testHello() throws Exception {
+        mockMvc.perform(get("/hello").param("name", "John"))
+            .andExpect(status().isOk())
+            .andExpect(content().string("Hello John!"));
+    }
+
+    @Test
+    public void testRateLimited() throws Exception {
+        when(rateLimiter.tryAcquire()).thenReturn(false);
+
+        mockMvc.perform(get("/hello"))
+            .andExpect(status().isTooManyRequests())
+            .andExpect(content().string("Too many requests"));
+    }
+}
+
+```
+
+
+
+#### 流水线部署成功
+
 ![](img/2.4/1.jpg)
 
 #### 部署产物与浏览器验证
 ![](img/2.4/2.jpg)
 
-#### 镜像仓库：
+#### 镜像仓库
 ![](img/2.4/1.png)
 
-## 3.扩容场景
-
-### 3.1 Prometheus 采集监控指标
+### 2.6 Prometheus 采集监控指标
 
 在springboot项目中配置Prometheus metrics 接口
 
@@ -283,7 +333,7 @@ spec:
 ![](img/3.1/3.jpg)
 ![](img/3.1/2.png)
 
-### 3.2 Grafana
+### 2.7 Grafana
 
 > http://172.29.4.18:31237/d/vgo81664k/monitor?orgId=1
 
@@ -299,10 +349,10 @@ spec:
 
 ![](img/3.2/CMU.png)
 
-### 3.3 压测并观察监控数据
+### 2.8 压测并观察监控数据
 ![](img/3.3/1.jpg)
 ![](img/3.3/2.jpg)
-### 3.4 手动扩容并观察监控数据
+### 2.9 手动扩容并观察监控数据
 扩容前pod数为1:
 
 ![](img/3.1/2.png)
