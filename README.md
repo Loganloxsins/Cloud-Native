@@ -280,7 +280,7 @@ spec:
 ![](img/3.1/1.jpg)
 ![](img/3.1/2.png)
 
-### 3.2
+### 3.2 Grafana
 
 ![](img/3.2/monitor.jpg)
 1. JVM usage 容器jvm使用情况
