@@ -8,17 +8,17 @@ metadata:
   name: demo
   namespace: nju30
 spec:
-  replicas: 1  #运行容器的副本数
+  replicas: 3  #运行容器的副本数
   selector:
     matchLabels:
       app: demo
   template:
     metadata:
-#       annotations:
-#         prometheus.io/path: /actuator/prometheus
-#         prometheus.io/port: "8080"
-#         prometheus.io/scheme: http
-#         prometheus.io/scrape: "true"
+      annotations:
+        prometheus.io/path: /actuator/prometheus
+        prometheus.io/port: "8080"
+        prometheus.io/scheme: http
+        prometheus.io/scrape: "true"
       labels:
         app: demo
     spec:
