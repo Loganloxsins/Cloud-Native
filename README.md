@@ -1,5 +1,4 @@
-# FAKE NAME
-
+# NJU30-云原生大作业说明文档
 ## 1. 项目说明
 
 | 姓名           | 学号      |
@@ -9,7 +8,6 @@
 | 王柏霏         | 211870213 |
 
 项目地址：https://gitee.com/duasoihvod/Cloud-Native.git
-统一限流地址：
 
 ## 2. 部署过程
 
