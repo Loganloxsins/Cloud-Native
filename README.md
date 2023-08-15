@@ -2,7 +2,14 @@
 
 ## 1. 项目说明
 
-TODO
+| 姓名           | 学号      |
+| -------------- | --------- |
+| 刘子恒 |     |
+| 陈宇航         |  |
+| 王柏霏         |  |
+
+项目地址：https://gitee.com/duasoihvod/Cloud-Native.git
+统一限流地址：
 
 ## 2. 部署过程
 
@@ -90,8 +97,191 @@ docker run -p 8080:8080  -d demo:v1
 ![](img/2.3/1.png)
 
 ### 2.4 在 Kubernetes 集群上创建 Deployment 和 Service
+Deployment & Service
+```yaml
+#/demo/jenkins/scripts/demo.yaml
 
-TODO
+apiVersion: apps/v1
+kind: Deployment #对象类型
+metadata:
+  labels:
+    app: demo
+  name: demo
+  namespace: nju30
+spec:
+  replicas: 1  #运行容器的副本数
+  selector:
+    matchLabels:
+      app: demo
+  template:
+    metadata:
+      annotations:
+        prometheus.io/path: /actuator/prometheus
+        prometheus.io/port: "8080"
+        prometheus.io/scheme: http
+        prometheus.io/scrape: "true"
+      labels:
+        app: demo
+    spec:
+      containers: #docker容器的配置
+        - image: harbor.edu.cn/nju30/demo:18 #pull镜像的地址
+          name: demo
+      imagePullSecrets:
+        - name: nju30-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: demo
+  namespace: nju30
+  labels:
+    app: demo
+spec:
+  type: NodePort
+  selector:
+    app: demo
+  ports:
+    - name: tcp
+      nodePort: 31109  #host's port
+      protocol: TCP
+      port: 8080  #service's port
+      targetPort: 8080  #target pod's port
+```
+### 2.5 持续集成流水线和持续部署流水线
+jenkins pipeline
+```groovy
+pipeline {
+    agent none
+    stages {
+        stage('Clone Code') {
+            agent {
+                label 'master'
+            }
+            steps {
+                echo "1.Git Clone Code"
+                git branch: 'main', url: "https://gitee.com/duasoihvod/Cloud-Native.git"
+            }
+        }
+        stage('Maven Build') {
+            agent {
+                docker {
+                    image 'maven:latest'
+                    args '-v /root/.m2:/root/.m2'
+                }
+            }
+            steps {
+                echo "2.Maven Build Stage"
+                dir('/var/jenkins_home/workspace/030demo/demo') {
+                    sh 'mvn -B clean package -Dmaven.test.skip=true'
+                }
+            }
+        }
+        stage('Image Build') {
+            agent {
+                label 'master'
+            }
+            steps {
+                echo "3.Image Build Stage"
+                dir('/var/jenkins_home/workspace/030demo/demo') {
+                    sh 'docker build -f Dockerfile --build-arg jar_name=target/cloud-native-0.0.1-SNAPSHOT.jar -t demo:${BUILD_ID} . '
+                    sh 'docker tag  demo:${BUILD_ID}  harbor.edu.cn/nju30/demo:${BUILD_ID}'
+                }
+            }
+        }
+        stage('Push') {
+            agent {
+                label 'master'
+            }
+            steps {
+                echo "4.Push Docker Image Stage"
+                dir('/var/jenkins_home/workspace/030demo/demo') {
+                    sh "docker login --username=nju30 harbor.edu.cn -p nju302023"
+                    sh "docker push harbor.edu.cn/nju30/demo:${BUILD_ID}"
+                }
+
+            }
+        }
+    }
+}
+
+
+node('slave') {
+    container('jnlp-kubectl') {
+
+        stage('Clone YAML') {
+            echo "5. Git Clone YAML To Slave"
+            git url: "https://gitee.com/duasoihvod/Cloud-Native.git", branch: 'main'
+        }
+
+        stage('YAML') {
+            echo "6. Change YAML File Stage"
+            sh 'sed -i "s#{VERSION}#${BUILD_ID}#g" ./demo/jenkins/scripts/demo.yaml'
+        }
+
+        stage('Deploy') {
+            echo "7. Deploy To K8s Stage"
+            sh 'kubectl apply -f ./demo/jenkins/scripts/demo.yaml -n nju30'
+            sh 'kubectl apply -f ./demo/jenkins/scripts/demo-serviceMonitor.yaml -n nju30 --namespace=monitoring'
+        }
+    }
+}
+```
+#### 流水线部署成功：
+![](img/2.4/1.jpg)
+
+#### 部署产物与浏览器验证
+![](img/2.4/2.jpg)
+
+#### 镜像仓库：
+![](img/2.4/1.png)
+
+## 3.扩容场景
+
+### 3.1 Prometheus 采集监控指标
+
+在springboot项目中配置Prometheus metrics 接口
+
+
+```properties
+#application.properties
+server.port=8080
+management.endpoints.web.base-path=/actuator
+management.server.port=8080
+management.endpoints.web.exposure.include=prometheus
+management.prometheus.metrics.export.enabled=true
+management.endpoint.health.show-details=always
+management.metrics.tags.application=${spring.application.name}
+```
+
+
+声明一个ServiceMonitor对象，在流水线中的Deploy阶段部署
+```yaml
+#/demo/jenkins/scripts/demo-serviceMonitor.yaml
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    k8s-app: demo
+  name: demo
+  namespace: monitoring
+spec:
+  endpoints:
+  - interval: 30s
+    port: tcp
+    path: /actuator/prometheus
+    scheme: 'http'
+  selector:
+    matchLabels:
+      app: demo
+  namespaceSelector:
+    matchNames:
+    - nju30
+```
+
+在Prometheus的UI界面验证
+![](img/3.1/1.jpg)
+
+
 
 ```java
 2023 - 基于云原生技术的软件开发 - 大作业
